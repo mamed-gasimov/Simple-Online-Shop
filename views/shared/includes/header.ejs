@@ -2,5 +2,16 @@
     <div>
         <a href="/">Simple Online Shop</a>
     </div>
-    <nav></nav>
+    <nav>
+        <ul>
+            <% if (locals.isAuth) { %>
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                    <li>
+                        <button>Logout</button>
+                    </li>
+                </form>
+            <% } %>
+        </ul>
+    </nav>
 </header>
