@@ -11,6 +11,7 @@ const db = require('./data/database');
 const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
+const adminRoutes = require('./routes/admin.routes');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(checkAuthStatusMiddleware);
 app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
+app.use('/admin', adminRoutes); // here app.use takes first optional parameter as filter path
 
 app.use(errorHandlerMiddleware);
 
