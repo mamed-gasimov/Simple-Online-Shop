@@ -5,7 +5,10 @@
     <%- include('../../shared/includes/header') %>
     <main>
         <h1>Add new Product</h1>
-        <form action="" method="">
+        <!-- We changed enctype from default for form element beacuse we will submit in our form file element -->
+        <!-- That's why we need enctype="multipart/form-data". Also because we use it, we can't inject here csrf token 
+        with hidden input. That's why we use here query params for that. -->
+        <form action="/admin/products?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
             <p>
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" required>
