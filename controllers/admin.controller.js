@@ -24,6 +24,35 @@ const createNewProduct = async (req, res, next) => {
         await product.save();        
     } catch (error) {
         next(error);
+    }
+
+    res.redirect('/admin/products');
+}
+
+const getUpdateProduct = async (req, res, next) => {
+    try {
+       const product = await Product.findById(req.params.id);
+       res.render('admin/products/update-product', { product });
+    } catch (error) {
+        next(error);
+        return;
+    } 
+}
+
+const updateProduct = async (req, res, next) => {
+    const product = new Product({
+        ...req.body,
+        _id: req.params.id,
+    });
+
+    if (req.file) {
+        product.replaceImage(req.file.filename);
+    }
+
+    try {
+        await product.save();
+    } catch (error) {
+        next(error);
         return;
     }
 
@@ -34,4 +63,6 @@ module.exports = {
     getProducts,
     getNewProduct,
     createNewProduct,
+    getUpdateProduct,
+    updateProduct,
 }
