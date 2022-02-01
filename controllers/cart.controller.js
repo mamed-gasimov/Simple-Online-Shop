@@ -1,5 +1,9 @@
 const Product = require("../models/product.model");
 
+const getCart = (req, res) => {
+    res.render('customer/cart/cart');
+}
+
 const addCartItem = async (req, res, next) => {
     let product;
     try {
@@ -8,7 +12,7 @@ const addCartItem = async (req, res, next) => {
         next(error);
         return;
     }
-    const cart = res.locals.cart
+    const cart = res.locals.cart;
     cart.addItem(product);
     req.session.cart = cart;
 
@@ -19,5 +23,6 @@ const addCartItem = async (req, res, next) => {
 }
 
 module.exports = {
+    getCart,
     addCartItem,
 }
