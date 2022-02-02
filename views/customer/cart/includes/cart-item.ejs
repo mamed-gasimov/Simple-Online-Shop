@@ -5,8 +5,8 @@
             ($<%= cartItem.product.price.toFixed(2) %>)</span>
         </p>
     </div>
-    <div class="cart-item-management">
+    <form class="cart-item-management" data-productid="<%= product.id %>" data-csrf="<%= locals.csrfToken %>">
         <input type="number" value="<%= cartItem.quantity %>" required>
         <button class="btn btn-alt">Update</button>
-    </div>
+    </form>
 </article>
