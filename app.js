@@ -9,6 +9,7 @@ const productsRoutes = require('./routes/products.routes');
 const baseRoutes = require('./routes/base.routes');
 const adminRoutes = require('./routes/admin.routes');
 const cartRoutes = require('./routes/cart.routes');
+const ordersRoutes = require('./routes/orders.routes');
 const db = require('./data/database');
 const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 const errorHandlerMiddleware = require('./middlewares/error-handler');
@@ -38,6 +39,7 @@ app.use(authRoutes);
 app.use(productsRoutes);
 app.use('/cart', cartRoutes);
 app.use(protectRoutesMiddleware);
+app.use('/orders', ordersRoutes);
 app.use('/admin', adminRoutes); // here app.use takes first optional parameter as filter path
 
 app.use(errorHandlerMiddleware);
